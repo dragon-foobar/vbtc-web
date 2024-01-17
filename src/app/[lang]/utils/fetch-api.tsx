@@ -25,7 +25,6 @@ export async function fetchAPI(
     // Trigger API call
     const response = await fetch(requestUrl, mergedOptions);
     const data = await response.json();
-    console.log('data at api fetch levels', JSON.stringify(data))
     return data;
     
   } catch (error) {
