@@ -93,11 +93,11 @@ export default function Footer({
         <div className="grid grid-cols-12">
           <div className="pb-6 col-span-full md:pb-0 md:col-span-6">
             <Logo src={logoUrl}>
-              {logoText && <h2 className="text-2xl font-bold">{logoText}</h2>}
+              {logoText && <h2 className="text-lg md:text-xl font-bold">{logoText}</h2>}
             </Logo>
           </div>
 
-          <div className="col-span-6 text-center md:text-left md:col-span-3">
+          <div className="col-span-6 text-left md:col-span-3">
             <p className="pb-1 text-lg font-medium">Categories</p>
             <ul>
               {categoryLinks.map((link: CategoryLink) => (
@@ -106,7 +106,7 @@ export default function Footer({
             </ul>
           </div>
 
-          <div className="col-span-6 text-center md:text-left md:col-span-3">
+          <div className="col-span-6 text-left md:col-span-3">
             <p className="pb-1 text-lg font-medium">Menu</p>
             <ul>
               {menuLinks.map((link: FooterLink) => (
@@ -118,7 +118,7 @@ export default function Footer({
         <div className="grid justify-center pt-6 lg:justify-between">
           <div className="flex">
             <span className="mr-2">
-              ©{new Date().getFullYear()} No rights reserved. Fork code here.
+              ©{new Date().getFullYear()} No rights reserved. Fork code <Link target="_blank" href="https://github.com/dragon-foobar/vbtc-web" className="hover:text-secondary underline">here</Link>.
             </span>
             <ul className="flex">
               {legalLinks.map((link: FooterLink) => (
