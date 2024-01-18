@@ -87,13 +87,13 @@ export default function Navbar({
               theme === 'dark' ? 
               (
                 <li onClick={() => setTheme('light')} className="cursor-pointer flex">
-                  <MdOutlineLightMode width="2em" height="2em"/>
+                  <MdOutlineLightMode style={{fontSize: '1.5em'}}/>
                 </li>
               )
               :
               (
                 <li onClick={() => setTheme('dark')} className="cursor-pointer flex">
-                  <MdOutlineLightMode width="2em" height="2em"/>
+                  <MdOutlineLightMode style={{fontSize: '1.5em'}}/>
                 </li>
               )}
           </ul>

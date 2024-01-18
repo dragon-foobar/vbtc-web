@@ -4,7 +4,19 @@
 @import "react-slideshow-image/dist/styles.css";
 
 body {
-  @apply dark:bg-gradient-to-r dark:from-black dark:from-60% dark:to-charcoal dark:to-90% bg-gradient-to-r from-white from-40% to-very-light-brown to-90% font-sans
+  @apply dark:bg-gradient-to-r dark:from-black dark:from-60% dark:to-bistre dark:to-90% bg-gradient-to-r from-white from-40% to-floral-white to-90% font-sans
+}
+
+/******************************************* 
+  Text Styles
+*******************************************/ 
+
+h1 {
+  @apply text-black dark:text-white;
+}
+
+h2, h3, h4, h5, p {
+  @apply text-onyx dark:text-anti-flash-white;
 }
 
 /******************************************* 
@@ -13,23 +25,23 @@ body {
 
 /* Headers */
 .rich-text h1 {
-  @apply text-4xl font-bold mb-4 dark:text-white text-black ;
+  @apply text-4xl font-bold mb-4 dark:text-anti-flash-white text-black ;
 }
 
 .rich-text h2 {
-  @apply text-3xl font-bold mb-4 dark:text-white text-black;
+  @apply text-3xl font-bold mb-4 dark:text-anti-flash-white text-black;
 }
 
 .rich-text h3 {
-  @apply text-2xl font-bold dark:text-white mb-4 text-black;
+  @apply text-2xl font-bold dark:text-anti-flash-white mb-4 text-black;
 }
 
 .rich-text h4 {
-  @apply text-xl font-bold mb-4 dark:text-white text-black;
+  @apply text-xl font-bold mb-4 dark:text-anti-flash-white text-black;
 }
 
 .rich-text h5 {
-  @apply text-lg font-bold mb-4 dark:text-white text-black;
+  @apply text-lg font-bold mb-4 dark:text-anti-flash-white text-black;
 }
 
 .rich-text h6 {
