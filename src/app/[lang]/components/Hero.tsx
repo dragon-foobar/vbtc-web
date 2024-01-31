@@ -1,11 +1,11 @@
-'use client'
+"use client";
 
 import Link from "next/link";
 import Image from "next/image";
 import HighlightedText from "./HighlightedText";
 import { getStrapiMedia } from "../utils/api-helpers";
 import { renderButtonStyle } from "../utils/render-button-style";
-import { useTheme } from 'next-themes'
+import { useTheme } from "next-themes";
 
 interface Button {
   id: string;
@@ -38,18 +38,22 @@ interface HeroProps {
 }
 
 export default function Hero({ data }: HeroProps) {
-  const { theme } = useTheme()
-  const imgUrl = theme === 'dark' ? getStrapiMedia(data.darkModePicture.data.attributes.url) : getStrapiMedia(data.lightModePicture.data.attributes.url);
+  const { theme } = useTheme();
+  const imgUrl =
+    theme === "dark"
+      ? getStrapiMedia(data.darkModePicture.data.attributes.url)
+      : getStrapiMedia(data.lightModePicture.data.attributes.url);
   return (
     <section>
       <div className="container flex flex-col justify-center p-6 mx-auto sm:py-12 lg:py-24 lg:flex-row lg:justify-between">
-        <div className="flex items-center justify-center p-6 mt-8 lg:mt-0 h-72 sm:h-80 lg:h-96 xl:h-112 2xl:h-128">
+        <div className="flex items-center justify-center p-4 sm:p-6 lg:mt-0 h-72 sm:h-80 lg:h-96 xl:h-112 2xl:h-128">
           <Image
             src={imgUrl || ""}
             alt={
-              data.lightModePicture.data.attributes.alternativeText || "none provided"
+              data.lightModePicture.data.attributes.alternativeText ||
+              "none provided"
             }
-            className="object-contain h-72 sm:h-80 lg:h-96 xl:h-112 2xl:h-128 "
+            className="object-contain h-128 sm:h-80 lg:h-96 xl:h-112 2xl:h-128 "
             width={600}
             height={600}
           />
@@ -58,7 +62,7 @@ export default function Hero({ data }: HeroProps) {
           <HighlightedText
             text={data.title}
             tag="h1"
-            className="text-5xl font-bold leading-none sm:text-6xl mb-8"
+            className="text-4xl font-bold leading-none sm:text-6xl mt-8 lg:mt-0 mb-8"
             color="dark:text-violet-400"
           />
 
