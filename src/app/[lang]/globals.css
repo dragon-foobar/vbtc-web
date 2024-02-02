@@ -4,28 +4,43 @@
 @import "react-slideshow-image/dist/styles.css";
 
 body {
-  @apply dark:bg-gradient-to-r dark:from-black dark:from-60% dark:to-bistre dark:to-90% bg-gradient-to-r from-white from-40% to-floral-white to-90% font-sans
+  @apply dark:bg-gradient-to-r dark:from-black dark:from-40% dark:to-bistre dark:to-80% bg-gradient-to-r from-white from-40% to-floral-white to-70%;
 }
 
 /******************************************* 
   Text Styles
-*******************************************/ 
+*******************************************/
 
 h1 {
   @apply text-black dark:text-white;
 }
 
-h2, h3, h4, h5, p {
+h2,
+h3,
+h4,
+h5,
+p {
   @apply text-onyx dark:text-anti-flash-white;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  @apply font-sans;
+}
+
+p {
+  @apply font-serif;
 }
 
 /******************************************* 
   Rich Text Styles
-*******************************************/ 
+*******************************************/
 
-/* Headers */
-.rich-text h1 {
-  @apply text-4xl font-bold mb-4 dark:text-anti-flash-white text-black ;
+Headers .rich-text h1 {
+  @apply text-4xl font-bold mb-4 dark:text-anti-flash-white text-black;
 }
 
 .rich-text h2 {
@@ -133,10 +148,9 @@ h2, h3, h4, h5, p {
   @apply bg-white border-black text-[#301014ff] px-4 py-2 rounded-lg mb-4;
 }
 
-
 /******************************************* 
   React Slideshow Styles
-*******************************************/   
+*******************************************/
 
 .react-slideshow-container [aria-label="Previous Slide"] {
   margin-left: 1rem;
