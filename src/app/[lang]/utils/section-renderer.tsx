@@ -12,7 +12,7 @@ export function sectionRenderer(section: any, index: number) {
     case "sections.features":
       return <Features key={index} data={section} />;
     case "sections.rich-text":
-      return <RichText key={index} data={section} />;
+      return <RichText key={index} content={section.content} />;
     case "sections.testimonials-group":
       return <Testimonials key={index} data={section} />;
     case "sections.pricing":

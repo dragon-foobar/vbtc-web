@@ -45,8 +45,8 @@ export default function Hero({ data }: HeroProps) {
       : getStrapiMedia(data.lightModePicture.data.attributes.url);
   return (
     <section>
-      <div className="container flex flex-col justify-center p-6 mx-auto sm:py-12 lg:py-24 lg:flex-row lg:justify-between">
-        <div className="flex items-center justify-center p-4 sm:p-6 lg:mt-0 h-72 sm:h-80 lg:h-96 xl:h-112 2xl:h-128">
+      <div className="container flex flex-col justify-center mx-auto sm:py-12 lg:py-24 lg:flex-row lg:justify-between">
+        <div className="flex items-center justify-center p-6 lg:mt-0 h-5/6 sm:h-80 lg:h-96 xl:h-112 2xl:h-128">
           <Image
             src={imgUrl || ""}
             alt={
