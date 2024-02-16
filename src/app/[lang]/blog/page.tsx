@@ -6,7 +6,15 @@ import Loader from "../components/Loader";
 import Blog from "../views/blog-list";
 import PageHeader from "../components/PageHeader";
 
-export default function Registration() {
+interface Meta {
+  pagination: {
+    start: number;
+    limit: number;
+    total: number;
+  };
+}
+
+export default function Profile() {
   const [meta, setMeta] = useState<Meta | undefined>();
   const [data, setData] = useState<any>([]);
   const [isLoading, setLoading] = useState(true);
