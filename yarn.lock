@@ -1309,6 +1309,11 @@ queue-microtask@^1.2.2:
   resolved "https://registry.npmjs.org/queue-microtask/-/queue-microtask-1.2.3.tgz"
   integrity sha512-NuaNSa6flKT5JaSYQzJok04JzTL1CA6aGhv5rfLW3PgqA+M2ChpZQnAC8h8i4ZFkBS8X5RqkDBHA7r4hej3K9A==
 
+react-btcpay-paybutton@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/react-btcpay-paybutton/-/react-btcpay-paybutton-1.0.0.tgz#5116326b62f32f58d2eec072a5bcfa93824a9e80"
+  integrity sha512-8XR7ITq1JRyDAPMBD7bdFxdHBxr+0tqRrarNZc+2sYERq10fAkjh6Xu6JR+nVnVYHyEzSnPs/vSUtqczZEqTVg==
+
 react-dom@^18.2.0:
   version "18.2.0"
   resolved "https://registry.npmjs.org/react-dom/-/react-dom-18.2.0.tgz"

@@ -6,6 +6,7 @@ import { CgWebsite } from "react-icons/cg";
 import { MdOutlineEmail } from "react-icons/md";
 import { FaDiscord, FaLinkedin } from "react-icons/fa";
 import { AiFillTwitterCircle, AiFillYoutube } from "react-icons/ai";
+import { ReactBtcPayButton } from "./DonationWiget";
 
 interface FooterLink {
   id: number;
@@ -42,10 +43,7 @@ function FooterLink({ url, text }: FooterLink) {
 function CategoryLink({ attributes }: CategoryLink) {
   return (
     <li className="flex">
-      <Link
-        href={`/blog/${attributes.slug}`}
-        className="hover:dark:text-white"
-      >
+      <Link href={`/blog/${attributes.slug}`} className="hover:dark:text-white">
         {attributes.name}
       </Link>
     </li>
@@ -63,9 +61,9 @@ function RenderSocialIcon({ social }: { social: string | undefined }) {
     case "DISCORD":
       return <FaDiscord />;
     case "LINKEDIN":
-        return <FaLinkedin />;
+      return <FaLinkedin />;
     case "MAIL":
-      return <MdOutlineEmail />
+      return <MdOutlineEmail />;
     default:
       return null;
   }
@@ -86,18 +84,21 @@ export default function Footer({
   legalLinks: Array<FooterLink>;
   socialLinks: Array<FooterLink>;
 }) {
-
+  const btcpayUrl = process.env.NEXT_PUBLIC_BTCPAY_URL;
+  const btcpayStoreId = process.env.NEXT_PUBLIC_BTCPAY_STORE_ID;
   return (
     <footer className="py-6">
       <div className="container px-6 mx-auto space-y-6 divide-y divide-gray-400 md:space-y-12 divide-opacity-50">
         <div className="grid grid-cols-12">
           <div className="pb-6 col-span-full md:pb-0 md:col-span-6">
             <Logo src={logoUrl}>
-              {logoText && <h2 className="text-lg md:text-xl font-bold">{logoText}</h2>}
+              {logoText && (
+                <h2 className="text-lg md:text-xl font-bold">{logoText}</h2>
+              )}
             </Logo>
           </div>
 
-          <div className="col-span-6 text-left md:col-span-3">
+          <div className="col-span-full text-left md:col-span-2">
             <p className="pb-1 text-lg font-medium">Categories</p>
             <ul>
               {categoryLinks.map((link: CategoryLink) => (
@@ -106,7 +107,7 @@ export default function Footer({
             </ul>
           </div>
 
-          <div className="col-span-6 text-left md:col-span-3">
+          <div className="col-span-full text-left md:col-span-2">
             <p className="pb-1 text-lg font-medium">Menu</p>
             <ul>
               {menuLinks.map((link: FooterLink) => (
@@ -114,19 +115,28 @@ export default function Footer({
               ))}
             </ul>
           </div>
+
+          <div className="col-span-full text-left md:col-span-2">
+            <p className="pb-1 text-lg font-medium">Support us</p>
+            <ReactBtcPayButton />
+          </div>
         </div>
         <div className="grid justify-center pt-6 lg:justify-between">
           <div className="flex">
             <span className="mr-2">
-              ©{new Date().getFullYear()} No rights reserved. Fork code <Link target="_blank" href="https://github.com/dragon-foobar/vbtc-web" className="hover:text-secondary underline">here</Link>.
+              ©{new Date().getFullYear()} No rights reserved. Fork code{" "}
+              <Link
+                target="_blank"
+                href="https://github.com/dragon-foobar/vbtc-web"
+                className="hover:text-secondary underline"
+              >
+                here
+              </Link>
+              .
             </span>
             <ul className="flex">
               {legalLinks.map((link: FooterLink) => (
-                <Link
-                  href={link.url}
-                  className="mr-2"
-                  key={link.id}
-                >
+                <Link href={link.url} className="mr-2" key={link.id}>
                   {link.text}
                 </Link>
               ))}
