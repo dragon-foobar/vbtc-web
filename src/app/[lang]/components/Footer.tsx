@@ -98,7 +98,7 @@ export default function Footer({
             </Logo>
           </div>
 
-          <div className="col-span-full text-left md:col-span-2">
+          <div className="pb-6 md:pb-0 col-span-6 text-left md:col-span-2">
             <p className="pb-1 text-lg font-medium">Categories</p>
             <ul>
               {categoryLinks.map((link: CategoryLink) => (
@@ -107,7 +107,7 @@ export default function Footer({
             </ul>
           </div>
 
-          <div className="col-span-full text-left md:col-span-2">
+          <div className="pb-6 md:pb-0 col-span-6 text-left md:col-span-2">
             <p className="pb-1 text-lg font-medium">Menu</p>
             <ul>
               {menuLinks.map((link: FooterLink) => (
@@ -116,8 +116,8 @@ export default function Footer({
             </ul>
           </div>
 
-          <div className="col-span-full text-left md:col-span-2">
-            <p className="pb-1 text-lg font-medium">Support us</p>
+          <div className="pb-6 md:pb-0 col-span-full text-left md:col-span-2">
+            <p className="pb-1 text-lg font-medium text-center">Support us</p>
             <ReactBtcPayButton />
           </div>
         </div>
