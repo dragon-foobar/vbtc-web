@@ -46,9 +46,9 @@ export default function Post({ data }: { data: Article }) {
   return (
     <article className="space-y-8">
       <div className="space-y-6">
-        <h1 className="leading-tight text-5xl font-bold ">{title}</h1>
+        <h1 className="leading-tight text-4xl font-bold ">{title}</h1>
         <div className="flex flex-col items-start justify-between w-full md:flex-row md:items-center">
-          <h2 className="text-2xl">{description}</h2>
+          <h2 className="text-xl">{description}</h2>
         </div>
       </div>
       {imageUrl && (

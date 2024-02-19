@@ -19,6 +19,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: metadata.metaTitle,
     description: metadata.metaDescription,
+    authors: {
+      name: metadata.author,
+    },
+    keywords: metadata.keywords.split(","),
+    creator: "Victorian Bitcoin Technology Club Inc.",
+    openGraph: metadata.openGraph,
   };
 }
 

@@ -61,7 +61,6 @@ export const POST = async (request: NextRequest, response: NextResponse) => {
     });
 
     const session = await response.json();
-    console.log(JSON.stringify({ session }, null, 2));
     console.info(`[BTCPayServer] ✅ Successfully created Checkout Page!`);
     return NextResponse.json({ success: true, url: session.checkoutLink });
   } catch (error) {

@@ -75,6 +75,7 @@ export async function generateMetadata({
     icons: {
       icon: [new URL(url, getStrapiURL())],
     },
+    openGraph: metadata.openGraph,
   };
 }
 
@@ -87,7 +88,15 @@ export default async function RootLayout({
 }) {
   const global = await getGlobal(params.lang);
   // TODO: CREATE A CUSTOM ERROR PAGE
-  if (!global.data) return null;
+  if (!global.data)
+    return (
+      <html>
+        <body>
+          <h1>Whoops</h1>
+          <p>Something went wrong. Maybe come back later.</p>
+        </body>
+      </html>
+    );
 
   const { notificationBanner, navbar, footer } = global.data.attributes;
 

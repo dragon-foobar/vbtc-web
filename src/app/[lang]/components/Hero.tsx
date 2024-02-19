@@ -45,7 +45,7 @@ export default function Hero({ data }: HeroProps) {
       : getStrapiMedia(data.lightModePicture.data.attributes.url);
   return (
     <section>
-      <div className="container flex flex-col justify-center mx-auto sm:py-8 lg:py-12 lg:flex-row lg:justify-between">
+      <div className="container flex flex-col justify-center mx-auto sm:py-6 lg:flex-row lg:justify-between xl:px-60">
         <div className="flex items-center justify-center p-6 lg:mt-0 h-5/6 sm:h-80 lg:h-96 xl:h-112 2xl:h-128">
           <Image
             src={imgUrl || ""}
@@ -58,11 +58,11 @@ export default function Hero({ data }: HeroProps) {
             height={600}
           />
         </div>
-        <div className="flex flex-col justify-center p-6 text-center rounded-lg lg:max-w-md xl:max-w-lg lg:text-left">
+        <div className="flex flex-col justify-center p-2 text-center rounded-lg lg:max-w-lg xl:max-w-lg lg:text-left">
           <HighlightedText
             text={data.title}
             tag="h1"
-            className="text-4xl font-bold leading-none sm:text-6xl mt-8 lg:mt-0 mb-8"
+            className="text-4xl font-bold leading-none sm:text-6xl mt-2 lg:mt-0"
             color="dark:text-violet-400"
           />
 

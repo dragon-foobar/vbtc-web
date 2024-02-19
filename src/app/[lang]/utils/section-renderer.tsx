@@ -4,6 +4,8 @@ import Testimonials from "../components/Testimonials";
 import Pricing from "../components/Pricing";
 import Email from "../components/Email";
 import RichText from "../components/RichText";
+import Quote from "../components/Quote";
+import FeaturedText from "../components/FeaturedText";
 
 export function sectionRenderer(section: any, index: number) {
   switch (section.__component) {
@@ -19,6 +21,10 @@ export function sectionRenderer(section: any, index: number) {
       return <Pricing key={index} data={section} />;
     case "sections.lead-form":
       return <Email key={index} data={section} />;
+    case "sections.quote":
+      return <Quote key={index} data={section} />;
+    case "sections.featured-text-block":
+      return <FeaturedText key={index} data={section} />;
     default:
       return null;
   }
