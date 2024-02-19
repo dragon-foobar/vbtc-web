@@ -18,14 +18,14 @@ export default function Quote({ data }: QuoteProps) {
   return (
     <section>
       <div className="container mx-auto justify-center sm:py-8 lg:py-12">
-        <div className="flex text-center pb-2 lg:pb-12 lg:px-32">
+        <div className="flex text-center pb-2 lg:pb-4 lg:px-32">
           <span className="text-9xl">“</span>
-          <p className="text-center px-6 py-1 text-2xl xl:text-6xl md:text-4xl italic">
+          <p className="text-center px-6 text-2xl xl:text-4xl md:text-3xl italic">
             {quote}
           </p>
           <span className="text-9xl">”</span>
         </div>
-        <p className="text-right text-2xl pr-12 lg:pr-36">
+        <p className="text-right text-xl md:text-2xl pr-12 lg:pr-36">
           <b>{author}</b>
         </p>
         {authorDescription && (
