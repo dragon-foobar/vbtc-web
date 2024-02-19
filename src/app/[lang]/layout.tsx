@@ -71,7 +71,7 @@ export async function generateMetadata({
 
   const { metadata, favicon } = meta.data.attributes;
   const { url } = favicon.data.attributes;
-  console.log("metaata in lang page", metadata);
+
   return {
     title: metadata.metaTitle,
     description: metadata.metaDescription,
