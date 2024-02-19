@@ -1,7 +1,10 @@
 import { sectionRenderer } from "@/app/[lang]/utils/section-renderer";
 import { Metadata } from "next";
 import { getPageBySlug } from "@/app/[lang]/utils/get-page-by-slug";
-import { FALLBACK_SEO } from "@/app/[lang]/utils/constants";
+import {
+  FALLBACK_SEO,
+  FALLBACK_OPEN_GRAPH,
+} from "@/app/[lang]/utils/constants";
 
 type Props = {
   params: {
@@ -24,7 +27,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     },
     keywords: metadata.keywords ? metadata.keywords.split(",") : "",
     creator: "Victorian Bitcoin Technology Club Inc.",
-    openGraph: metadata.openGraph,
+    openGraph: {
+      ...FALLBACK_OPEN_GRAPH,
+      ...metadata.openGraph,
+    },
   };
 }
 

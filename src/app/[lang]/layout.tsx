@@ -9,7 +9,10 @@ import { i18n } from "../../../i18n-config";
 import Banner from "./components/Banner";
 import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
-import { FALLBACK_SEO } from "@/app/[lang]/utils/constants";
+import {
+  FALLBACK_SEO,
+  FALLBACK_OPEN_GRAPH,
+} from "@/app/[lang]/utils/constants";
 
 const lora = Lora({
   display: "swap",
@@ -75,7 +78,10 @@ export async function generateMetadata({
     icons: {
       icon: [new URL(url, getStrapiURL())],
     },
-    openGraph: metadata.openGraph,
+    openGraph: {
+      ...FALLBACK_OPEN_GRAPH,
+      ...metadata.openGraph,
+    },
   };
 }
 
