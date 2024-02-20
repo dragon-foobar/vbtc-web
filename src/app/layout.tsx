@@ -1,37 +1,136 @@
 import type { Metadata } from "next";
+import "./globals.css";
+import { Fjalla_One } from "next/font/google";
+import { Lora, Montserrat } from "next/font/google";
+import { getStrapiMedia, getStrapiURL } from "./utils/api-helpers";
+import { fetchAPI } from "./utils/fetch-api";
+import { ThemeProvider } from "./providers";
+import Footer from "./components/Footer";
+import Navbar from "./components/Navbar";
+import { FALLBACK_SEO } from "@/app/utils/constants";
 
-export const metadata: Metadata = {
-  metadataBase: new URL("https://vbtc.org.au"),
-  title: "Victorian Bitcoin Technology Club",
-  description: "Supporting grassroots adoption in Victoria, Australia",
-  openGraph: {
-    title: "Victorian Bitcoin Technology Club",
-    type: "website",
-    url: new URL("https://vbtc.org.au"),
-    images: new URL(
-      "https://res.cloudinary.com/dgpuwpmjk/image/upload/v1708393812/vbtc-share-2_lgn49h.png"
-    ),
-  },
-  twitter: {
-    card: "summary_large_image",
-    site: "@vbtcorg",
-    title: "Victorian Bitcoin Technology Club",
-    description: "Supporting grassroots adoption in Victoria, Australia",
-    images: new URL(
-      "https://res.cloudinary.com/dgpuwpmjk/image/upload/v1708393812/vbtc-share-2_lgn49h.png"
-    ),
-  },
-};
+const metadataBaseUrlString = process.env.VERCEL_URL;
 
-export default function RootLayout({
+const lora = Lora({
+  display: "swap",
+  variable: "--font-lora",
+  subsets: ["latin"],
+  adjustFontFallback: false,
+});
+
+const montserrat = Montserrat({
+  display: "swap",
+  variable: "--font-montserrat",
+  subsets: ["latin"],
+});
+
+//👇 Configure the object for our second font
+const fjallaOne = Fjalla_One({
+  variable: "--font-fjalla-one",
+  weight: "400",
+  subsets: ["latin"],
+});
+
+async function getGlobal(): Promise<any> {
+  const token = process.env.NEXT_PUBLIC_STRAPI_API_TOKEN;
+
+  if (!token)
+    throw new Error("The Strapi API Token environment variable is not set.");
+
+  const path = `/global`;
+  const options = { headers: { Authorization: `Bearer ${token}` } };
+
+  const urlParamsObject = {
+    populate: [
+      "metadata.shareImage",
+      "favicon",
+      "notificationBanner.link",
+      "navbar.links",
+      "navbar.navbarLogo.logoImg",
+      "footer.footerLogo.logoImg",
+      "footer.menuLinks",
+      "footer.legalLinks",
+      "footer.socialLinks",
+      "footer.categories",
+    ],
+    locale: "en",
+  };
+  return await fetchAPI(path, urlParamsObject, options);
+}
+
+export async function generateMetadata(): Promise<Metadata> {
+  const meta = await getGlobal();
+
+  if (!meta.data) return FALLBACK_SEO;
+
+  const { metadata, favicon } = meta.data.attributes;
+  const { url } = favicon.data.attributes;
+
+  return {
+    ...FALLBACK_SEO,
+    metadataBase: new URL("https://vbtc.org.au"),
+    title: metadata.metaTitle,
+    description: metadata.metaDescription,
+    icons: {
+      icon: [new URL(url, getStrapiURL())],
+    },
+    openGraph: metadata.openGraph,
+  };
+}
+
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const global = await getGlobal();
+  // TODO: CREATE A CUSTOM ERROR PAGE
+  if (!global.data)
+    return (
+      <html>
+        <body>
+          <h1>Whoops</h1>
+          <p>Something went wrong. Maybe come back later.</p>
+        </body>
+      </html>
+    );
+
+  const { notificationBanner, navbar, footer } = global.data.attributes;
+
+  const navbarLogoUrl = getStrapiMedia(
+    navbar.navbarLogo.logoImg.data.attributes.url
+  );
+
+  const footerLogoUrl = getStrapiMedia(
+    footer.footerLogo.logoImg.data.attributes.url
+  );
+
   return (
-    <html lang="en">
+    <html
+      lang="en-AU"
+      className={`${lora.variable} ${fjallaOne.variable} ${montserrat.variable}`}
+    >
       <body>
-        <main>{children}</main>
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+          <Navbar
+            links={navbar.links}
+            logoUrl={navbarLogoUrl}
+            logoText={navbar.navbarLogo.logoText}
+          />
+
+          <main className="min-h-screen">{children}</main>
+
+          {/* <Banner data={notificationBanner} /> */}
+
+          <Footer
+            logoUrl={footerLogoUrl}
+            logoText={footer.footerLogo.logoText}
+            menuLinks={footer.menuLinks}
+            categoryLinks={footer.categories.data}
+            legalLinks={footer.legalLinks}
+            socialLinks={footer.socialLinks}
+          />
+        </ThemeProvider>
       </body>
     </html>
   );

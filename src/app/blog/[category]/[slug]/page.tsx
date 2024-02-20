@@ -1,7 +1,7 @@
-import { fetchAPI } from "@/app/[lang]/utils/fetch-api";
-import Post from "@/app/[lang]/views/post";
+import { fetchAPI } from "@/app/utils/fetch-api";
+import Post from "@/app/views/post";
 import type { Metadata, ResolvingMetadata } from "next";
-import { FALLBACK_OPEN_GRAPH } from "@/app/[lang]/utils/constants";
+import { FALLBACK_OPEN_GRAPH } from "@/app/utils/constants";
 
 type Props = {
   params: { slug: string };

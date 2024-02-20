@@ -1,14 +1,10 @@
-import { sectionRenderer } from "@/app/[lang]/utils/section-renderer";
+import { sectionRenderer } from "@/app/utils/section-renderer";
 import { Metadata, ResolvingMetadata } from "next";
-import { getPageBySlug } from "@/app/[lang]/utils/get-page-by-slug";
-import {
-  FALLBACK_SEO,
-  FALLBACK_OPEN_GRAPH,
-} from "@/app/[lang]/utils/constants";
+import { getPageBySlug } from "@/app/utils/get-page-by-slug";
+import { FALLBACK_SEO, FALLBACK_OPEN_GRAPH } from "@/app/utils/constants";
 
 type Props = {
   params: {
-    lang: string;
     slug: string;
   };
 };
@@ -17,8 +13,8 @@ export async function generateMetadata(
   { params }: Props,
   parent: ResolvingMetadata
 ): Promise<Metadata> {
-  const { slug, lang } = params;
-  const page = await getPageBySlug(slug, lang);
+  const { slug } = params;
+  const page = await getPageBySlug(slug);
 
   if (!page.data[0].attributes?.seo) return FALLBACK_SEO;
   const metadata = page.data[0].attributes.seo;
@@ -35,15 +31,15 @@ export async function generateMetadata(
     keywords: metadata.keywords ? metadata.keywords.split(",") : "",
     creator: "Victorian Bitcoin Technology Club Inc.",
     openGraph: {
-      ...FALLBACK_OPEN_GRAPH,
       ...metadata.openGraph,
-      images: metadata.imageUrl || previousImages,
+      images: [metadata.openGraph.images, previousImages],
     },
   };
 }
 
 export default async function PageRoute({ params }: Props) {
-  const page = await getPageBySlug(params.slug, params.lang);
+  const page = await getPageBySlug(params.slug);
+
   if (page.data.length === 0) return null;
   const contentSections = page.data[0].attributes.contentSections;
   return contentSections.map((section: any, index: number) =>
