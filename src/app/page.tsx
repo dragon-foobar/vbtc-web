@@ -1,12 +1,8 @@
 import type { Metadata } from "next";
 import { redirect } from "next/navigation";
 
-const metadataBaseUrlString = process.env.VERCEL_URL;
-
 export const metadata: Metadata = {
-  metadataBase: metadataBaseUrlString
-    ? new URL(metadataBaseUrlString)
-    : new URL("https://vbtc.org.au"),
+  metadataBase: new URL("https://vbtc.org.au"),
   title: "Victorian Bitcoin Technology Club",
   description: "Supporting grassroots adoption in Victoria, Australia",
   openGraph: {

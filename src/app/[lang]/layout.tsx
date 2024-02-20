@@ -75,9 +75,7 @@ export async function generateMetadata({
   const { url } = favicon.data.attributes;
 
   return {
-    metadataBase: metadataBaseUrlString
-      ? new URL(metadataBaseUrlString)
-      : new URL("https://vbtc.org.au"),
+    metadataBase: new URL("https://vbtc.org.au"),
     title: metadata.metaTitle,
     description: metadata.metaDescription,
     icons: {
