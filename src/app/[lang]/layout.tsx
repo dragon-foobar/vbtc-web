@@ -14,6 +14,8 @@ import {
   FALLBACK_OPEN_GRAPH,
 } from "@/app/[lang]/utils/constants";
 
+const metadataBaseUrlString = process.env.VERCEL_URL;
+
 const lora = Lora({
   display: "swap",
   variable: "--font-lora",
@@ -73,6 +75,9 @@ export async function generateMetadata({
   const { url } = favicon.data.attributes;
 
   return {
+    metadataBase: metadataBaseUrlString
+      ? new URL(metadataBaseUrlString)
+      : new URL("https://vbtc.org.au"),
     title: metadata.metaTitle,
     description: metadata.metaDescription,
     icons: {
