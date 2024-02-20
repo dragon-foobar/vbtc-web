@@ -1,5 +1,5 @@
 import { sectionRenderer } from "@/app/[lang]/utils/section-renderer";
-import { Metadata } from "next";
+import { Metadata, ResolvingMetadata } from "next";
 import { getPageBySlug } from "@/app/[lang]/utils/get-page-by-slug";
 import {
   FALLBACK_SEO,
@@ -13,11 +13,18 @@ type Props = {
   };
 };
 
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const page = await getPageBySlug(params.slug, params.lang);
+export async function generateMetadata(
+  { params }: Props,
+  parent: ResolvingMetadata
+): Promise<Metadata> {
+  const { slug, lang } = params;
+  const page = await getPageBySlug(slug, lang);
 
   if (!page.data[0].attributes?.seo) return FALLBACK_SEO;
   const metadata = page.data[0].attributes.seo;
+
+  const previousImages =
+    (await parent).openGraph?.images || FALLBACK_OPEN_GRAPH.images;
 
   return {
     title: metadata.metaTitle,
@@ -30,6 +37,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     openGraph: {
       ...FALLBACK_OPEN_GRAPH,
       ...metadata.openGraph,
+      images: metadata.imageUrl || previousImages,
     },
   };
 }

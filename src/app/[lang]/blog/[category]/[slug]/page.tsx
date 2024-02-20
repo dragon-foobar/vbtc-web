@@ -1,7 +1,11 @@
 import { fetchAPI } from "@/app/[lang]/utils/fetch-api";
 import Post from "@/app/[lang]/views/post";
-import type { Metadata } from "next";
+import type { Metadata, ResolvingMetadata } from "next";
 import { FALLBACK_OPEN_GRAPH } from "@/app/[lang]/utils/constants";
+
+type Props = {
+  params: { slug: string };
+};
 
 async function getPostBySlug(slug: string) {
   const token = process.env.NEXT_PUBLIC_STRAPI_API_TOKEN;
@@ -42,14 +46,16 @@ async function getMetaData(slug: string) {
   return response.data;
 }
 
-export async function generateMetadata({
-  params,
-}: {
-  params: { slug: string };
-}): Promise<Metadata> {
-  const meta = await getMetaData(params.slug);
+export async function generateMetadata(
+  { params }: Props,
+  parent: ResolvingMetadata
+): Promise<Metadata> {
+  const slug = params.slug;
+  const meta = await getMetaData(slug);
 
   const metadata = meta[0].attributes.seo;
+  const previousImages =
+    (await parent).openGraph?.images || FALLBACK_OPEN_GRAPH.images;
 
   return {
     title: metadata.metaTitle,
@@ -62,6 +68,7 @@ export async function generateMetadata({
     openGraph: {
       ...FALLBACK_OPEN_GRAPH,
       ...metadata.openGraph,
+      images: metadata.imageUrl || previousImages,
     },
   };
 }

@@ -7,6 +7,6 @@ export const FALLBACK_OPEN_GRAPH = {
   title: "Victorian Bitcoin Technology Club",
   type: "website",
   url: "https://res.cloudinary.com/dgpuwpmjk/image/upload/v1708315479/vbtc-share-1_emency.png",
-  image:
+  images:
     "https://res.cloudinary.com/dgpuwpmjk/image/upload/v1708315479/vbtc-share-1_emency.png",
 };
