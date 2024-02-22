@@ -7,7 +7,7 @@ export const FALLBACK_SEO = {
     type: "website",
     url: new URL("https://vbtc.org.au"),
     images: new URL(
-      "https://res.cloudinary.com/dgpuwpmjk/image/upload/v1708393812/vbtc-share-2_lgn49h.png"
+      "https://res.cloudinary.com/dgpuwpmjk/image/upload/v1708579306/vbtc-share-3_ua2cxi.png"
     ),
   },
   twitter: {
@@ -16,7 +16,7 @@ export const FALLBACK_SEO = {
     title: "Victorian Bitcoin Technology Club",
     description: "Supporting grassroots adoption in Victoria, Australia",
     images: new URL(
-      "https://res.cloudinary.com/dgpuwpmjk/image/upload/v1708393812/vbtc-share-2_lgn49h.png"
+      "https://res.cloudinary.com/dgpuwpmjk/image/upload/v1708579306/vbtc-share-3_ua2cxi.png"
     ),
   },
 };
