@@ -123,7 +123,7 @@ export default function Footer({
         </div>
         <div className="grid justify-center pt-6 lg:justify-between">
           <div className="flex">
-            <span className="mr-2">
+            <span className="mr-4">
               ©{new Date().getFullYear()} No rights reserved. Fork code{" "}
               <Link
                 target="_blank"
@@ -136,13 +136,13 @@ export default function Footer({
             </span>
             <ul className="flex">
               {legalLinks.map((link: FooterLink) => (
-                <Link href={link.url} className="mr-2" key={link.id}>
+                <Link href={link.url} className="mr-4" key={link.id}>
                   {link.text}
                 </Link>
               ))}
             </ul>
           </div>
-          <div className="flex justify-center pt-4 space-x-4 lg:pt-0 lg:col-end-13">
+          {/* <div className="flex justify-center pt-4 space-x-4 lg:pt-0 lg:col-end-13">
             {socialLinks.map((link: FooterLink) => {
               return (
                 <a
@@ -157,7 +157,7 @@ export default function Footer({
                 </a>
               );
             })}
-          </div>
+          </div> */}
         </div>
       </div>
     </footer>

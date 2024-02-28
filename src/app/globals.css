@@ -41,7 +41,7 @@ q {
   Rich Text Styles
 *******************************************/
 .rich-text h1 {
-  @apply text-4xl text-center mt-6;
+  @apply text-4xl mt-6;
 }
 .rich-text h2 {
   @apply text-3xl font-bold mb-4 dark:text-anti-flash-white text-black mt-4;
@@ -97,23 +97,23 @@ q {
 
 /* Lists */
 .rich-text ul {
-  @apply list-disc pl-4 mb-4 text-2xl font-serif;
+  @apply list-disc pl-4 mb-4 text-lg font-serif;
 }
 
 .rich-text ol {
-  @apply list-decimal text-2xl pl-4 mb-4;
+  @apply list-decimal text-lg pl-4 mb-4;
 }
 
 .rich-text li {
-  @apply text-2xl pl-4 mb-2;
+  @apply text-lg pl-4 mb-2;
 }
 
 .rich-text li > ul {
-  @apply list-disc pl-4 mb-2 text-2xl;
+  @apply list-disc pl-4 mb-2 text-lg;
 }
 
 .rich-text li > ol {
-  @apply list-decimal pl-4 mb-2 text-2xl;
+  @apply list-decimal pl-4 mb-2 text-lg;
 }
 
 /* Code blocks */
@@ -140,10 +140,121 @@ q {
 
 /* Images */
 .rich-text img {
-  @apply w-full object-cover rounded-xl my-6;
+  @apply w-full lg:w-2/3 object-cover rounded-xl my-6;
 }
 
 /* Custom containers */
 .rich-text .warning {
+  @apply bg-white border-black text-[#301014ff] px-4 py-2 rounded-lg mb-4;
+}
+
+/******************************************* 
+  Blog Rich Text Styles
+*******************************************/
+.blog-rich-text h1 {
+  @apply text-4xl text-center mt-6;
+}
+.blog-rich-text h2 {
+  @apply text-3xl font-bold mb-4 dark:text-anti-flash-white text-black mt-4;
+}
+
+.blog-rich-text h3 {
+  @apply text-2xl font-bold dark:text-anti-flash-white mb-4 text-black mt-4;
+}
+
+.blog-rich-text h4 {
+  @apply text-xl font-bold mb-4 dark:text-anti-flash-white text-black mt-4;
+}
+
+.blog-rich-text h5 {
+  @apply text-xl font-bold mb-4 dark:text-anti-flash-white text-black mt-4;
+}
+
+.blog-rich-text h6 {
+  @apply text-xl font-bold mb-4 dark:text-white text-black mb-6;
+}
+
+/* Horizontal rules */
+.blog-rich-text hr {
+  @apply border-black dark:border-white my-8;
+}
+
+.blog-rich-text a {
+  @apply text-black dark:text-white underline;
+}
+
+/* Typographic replacements */
+.blog-rich-text p {
+  @apply mb-4 text-lg mb-4;
+}
+
+/* Emphasis */
+.blog-rich-text strong {
+  @apply font-bold;
+}
+
+.blog-rich-text em {
+  @apply italic;
+}
+
+.blog-rich-text del {
+  @apply line-through;
+}
+
+/* Blockquotes */
+.blog-rich-text blockquote {
+  @apply border-l-4 text-4xl border-black dark:border-white pl-4 py-2 mb-12;
+}
+
+/* Lists */
+.blog-rich-text ul {
+  @apply list-disc pl-4 mb-4 text-2xl font-serif;
+}
+
+.blog-rich-text ol {
+  @apply list-decimal text-2xl pl-4 mb-4;
+}
+
+.blog-rich-text li {
+  @apply text-2xl pl-4 mb-2;
+}
+
+.blog-rich-text li > ul {
+  @apply list-disc pl-4 mb-2 text-2xl;
+}
+
+.blog-rich-text li > ol {
+  @apply list-decimal pl-4 mb-2 text-2xl;
+}
+
+/* Code blocks */
+.blog-rich-text pre {
+  @apply font-mono bg-white text-black rounded p-4  my-6;
+}
+
+.blog-rich-text code {
+  @apply font-mono bg-white text-black rounded px-2 py-1;
+}
+
+/* Tables */
+.blog-rich-text table {
+  @apply w-full border-collapse border-black my-6;
+}
+
+.blog-rich-text th {
+  @apply bg-white text-left py-2 px-4 font-semibold border-b border-black;
+}
+
+.blog-rich-text td {
+  @apply py-2 px-4 border-b border-black;
+}
+
+/* Images */
+.blog-rich-text img {
+  @apply w-full object-cover rounded-xl my-6;
+}
+
+/* Custom containers */
+.blog-rich-text .warning {
   @apply bg-white border-black text-[#301014ff] px-4 py-2 rounded-lg mb-4;
 }

@@ -37,9 +37,8 @@ export default function ArticleSelect({
     category: string;
   };
 }) {
-
   return (
-    <div className="p-4 rounded-lg dark:bg-gray-900 min-h-[365px] relative">
+    <div className="p-4 rounded-lg relative">
       <h4 className="text-xl font-semibold">Browse By Category</h4>
 
       <div>
@@ -66,6 +65,8 @@ export default function ArticleSelect({
         <div className="space-y-2">
           <h4 className="text-lg font-semibold">Other Posts You May Like</h4>
           <ul className="ml-4 space-y-1 list-disc">
+            {articles.length === 0 &&
+              "(Oops! Were just getting started, so hang tight for more content.)"}
             {articles.map((article: Article) => {
               return (
                 <li>

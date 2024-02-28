@@ -1,7 +1,7 @@
 export const FALLBACK_SEO = {
   metadataBase: new URL("https://vbtc.org.au"),
   title: "Victorian Bitcoin Technology Club",
-  description: "Supporting grassroots adoption in Victoria, Australia",
+  description: "Supporting grassroots bitcoin education in Victoria, Australia",
   openGraph: {
     title: "Victorian Bitcoin Technology Club",
     type: "website",

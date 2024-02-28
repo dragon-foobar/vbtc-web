@@ -14,7 +14,13 @@ export function sectionRenderer(section: any, index: number) {
     case "sections.features":
       return <Features key={index} data={section} />;
     case "sections.rich-text":
-      return <RichText key={index} content={section.content} />;
+      return (
+        <RichText
+          key={index}
+          content={section.content}
+          markdownClass="rich-text"
+        />
+      );
     case "sections.testimonials-group":
       return <Testimonials key={index} data={section} />;
     case "sections.pricing":
@@ -22,7 +28,7 @@ export function sectionRenderer(section: any, index: number) {
     case "sections.lead-form":
       return <Email key={index} data={section} />;
     case "sections.quote":
-      return <Quote key={index} data={section} />;
+      return <Quote key={index} data={section} isBlogQuote={false} />;
     case "sections.featured-text-block":
       return <FeaturedText key={index} data={section} />;
     default:

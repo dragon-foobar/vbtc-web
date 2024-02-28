@@ -18,9 +18,9 @@ export default function Logo({
         <Image
           src={src}
           alt="logo"
-          width={45}
-          height={45}
-          className="rounded-full bg-charcoal"
+          width={65}
+          height={65}
+          className="rounded-full bg-black p-2"
         />
       )}
       <div className="ml-2">{children}</div>
