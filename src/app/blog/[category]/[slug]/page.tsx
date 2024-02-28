@@ -1,7 +1,7 @@
 import { fetchAPI } from "@/app/utils/fetch-api";
 import Post from "@/app/views/post";
 import type { Metadata, ResolvingMetadata } from "next";
-import { FALLBACK_OPEN_GRAPH } from "@/app/utils/constants";
+import { FALLBACK_OPEN_GRAPH, FALLBACK_SEO } from "@/app/utils/constants";
 
 type Props = {
   params: { slug: string };
@@ -57,20 +57,22 @@ export async function generateMetadata(
   const previousImages =
     (await parent).openGraph?.images || FALLBACK_OPEN_GRAPH.images;
 
-  return {
-    title: metadata.metaTitle,
-    description: metadata.metaDescription,
-    authors: {
-      name: metadata.author,
-    },
-    keywords: metadata.keywords ? metadata.keywords.split(",") : "",
-    creator: "Victorian Bitcoin Technology Club Inc.",
-    openGraph: {
-      ...FALLBACK_OPEN_GRAPH,
-      ...metadata.openGraph,
-      images: metadata.imageUrl || previousImages,
-    },
-  };
+  return FALLBACK_SEO;
+
+  // return {
+  //   title: metadata.metaTitle,
+  //   description: metadata.metaDescription,
+  //   authors: {
+  //     name: metadata.author,
+  //   },
+  //   keywords: metadata.keywords ? metadata.keywords.split(",") : "",
+  //   creator: "Victorian Bitcoin Technology Club Inc.",
+  //   openGraph: {
+  //     ...FALLBACK_OPEN_GRAPH,
+  //     ...metadata.openGraph,
+  //     images: metadata.imageUrl || previousImages,
+  //   },
+  // };
 }
 
 export default async function PostRoute({

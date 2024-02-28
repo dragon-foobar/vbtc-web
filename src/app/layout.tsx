@@ -65,17 +65,17 @@ export async function generateMetadata(): Promise<Metadata> {
 
   const { metadata, favicon } = meta.data.attributes;
   const { url } = favicon.data.attributes;
-
-  return {
-    ...FALLBACK_SEO,
-    metadataBase: new URL("https://vbtc.org.au"),
-    title: metadata.metaTitle,
-    description: metadata.metaDescription,
-    icons: {
-      icon: [new URL(url, getStrapiURL())],
-    },
-    openGraph: metadata.openGraph,
-  };
+  return FALLBACK_SEO;
+  // return {
+  //   ...FALLBACK_SEO,
+  //   metadataBase: new URL("https://vbtc.org.au"),
+  //   title: metadata.metaTitle,
+  //   description: metadata.metaDescription,
+  //   icons: {
+  //     icon: [new URL(url, getStrapiURL())],
+  //   },
+  //   openGraph: metadata.openGraph,
+  // };
 }
 
 export default async function RootLayout({

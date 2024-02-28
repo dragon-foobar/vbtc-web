@@ -21,20 +21,21 @@ export async function generateMetadata(
 
   const previousImages =
     (await parent).openGraph?.images || FALLBACK_OPEN_GRAPH.images;
+  return FALLBACK_SEO;
 
-  return {
-    title: metadata.metaTitle,
-    description: metadata.metaDescription,
-    authors: {
-      name: metadata.author,
-    },
-    keywords: metadata.keywords ? metadata.keywords.split(",") : "",
-    creator: "Victorian Bitcoin Technology Club Inc.",
-    openGraph: {
-      ...metadata.openGraph,
-      images: [metadata.openGraph.images, previousImages],
-    },
-  };
+  // return {
+  //   title: metadata.metaTitle,
+  //   description: metadata.metaDescription,
+  //   authors: {
+  //     name: metadata.author,
+  //   },
+  //   keywords: metadata.keywords ? metadata.keywords.split(",") : "",
+  //   creator: "Victorian Bitcoin Technology Club Inc.",
+  //   openGraph: {
+  //     ...metadata.openGraph,
+  //     images: [metadata.openGraph.images, previousImages],
+  //   },
+  // };
 }
 
 export default async function PageRoute({ params }: Props) {
