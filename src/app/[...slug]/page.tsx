@@ -13,14 +13,14 @@ export async function generateMetadata(
   { params }: Props,
   parent: ResolvingMetadata
 ): Promise<Metadata> {
-  const { slug } = params;
-  const page = await getPageBySlug(slug);
+  // const { slug } = params;
+  // const page = await getPageBySlug(slug);
 
-  if (!page.data[0].attributes?.seo) return FALLBACK_SEO;
-  const metadata = page.data[0].attributes.seo;
+  // if (!page.data[0].attributes?.seo) return FALLBACK_SEO;
+  // const metadata = page.data[0].attributes.seo;
 
-  const previousImages =
-    (await parent).openGraph?.images || FALLBACK_OPEN_GRAPH.images;
+  // const previousImages =
+  //   (await parent).openGraph?.images || FALLBACK_OPEN_GRAPH.images;
   return FALLBACK_SEO;
 
   // return {
