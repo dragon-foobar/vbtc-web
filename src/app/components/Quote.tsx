@@ -20,7 +20,7 @@ export default function Quote({ data, isBlogQuote }: QuoteProps) {
     <section>
       <div
         className={`container mx-auto justify-center ${
-          isBlogQuote ? "py-2" : "sm:py-8 lg:py-12"
+          isBlogQuote ? "py-2" : "sm:py-8 lg:py-12 lg:px-20"
         } `}
       >
         <div

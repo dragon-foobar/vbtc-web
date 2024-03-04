@@ -23,7 +23,7 @@ export default function FeatureText({ data }: FeaturedTextProps) {
               className="text-4xl font-bold leading-none sm:text-6xl mt-8 lg:mt-0 mb-8"
             />
           )}
-          <p className="mb-8 text-xl md:text-3xl lg:text-4xl sm:mb-12 text-ellipsis overflow-hidden md:leading-loose leading-relaxed">
+          <p className="mb-8 text-xl md:text-3xl lg:text-2xl sm:mb-12 text-ellipsis overflow-hidden md:leading-loose leading-relaxed">
             {text}
           </p>
         </div>

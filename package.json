@@ -13,6 +13,7 @@
     "@headlessui/react": "^1.7.17",
     "@heroicons/react": "^2.0.18",
     "@paralleldrive/cuid2": "^2.2.2",
+    "@stripe/stripe-js": "^3.0.6",
     "@types/negotiator": "^0.6.2",
     "@types/node": "20.8.9",
     "@types/qs": "^6.9.9",
@@ -30,6 +31,7 @@
     "react-markdown": "^9.0.0",
     "react-slideshow-image": "^4.3.0",
     "remark-gfm": "^4.0.0",
+    "stripe": "^14.18.0",
     "typescript": "5.2.2",
     "valibot": "^0.28.1"
   },

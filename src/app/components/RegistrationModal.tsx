@@ -1,3 +1,12 @@
+"use client";
+import { loadStripe } from "@stripe/stripe-js";
+
+if (!process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY)
+  throw new Error("Public stripe key not found");
+const stripePromise = loadStripe(
+  process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY
+);
+
 export const RegistrationModal = () => {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -5,20 +14,23 @@ export const RegistrationModal = () => {
     const formData = new FormData(e.currentTarget);
     console.log("form data", formData);
     const email = formData.get("email") as string;
+    const paymentMethod = formData.get("paymentMethod") as string;
 
     if (email.trim() === "") {
       alert("Please provide an email");
       return;
     }
 
-    const response = await fetch(`/checkout`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ email }),
-    });
-
+    const response = await fetch(
+      `${paymentMethod === "fiat" ? "/checkout-stripe" : "/checkout"}`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email }),
+      }
+    );
     const result = await response.json();
 
     if (result.success) {
@@ -67,7 +79,7 @@ export const RegistrationModal = () => {
               name="email"
               type="email"
               required
-              placeholder="satoshi@linux.org"
+              placeholder="satoshin@gmx.com"
             />
           </div>
         </div>
@@ -86,7 +98,7 @@ export const RegistrationModal = () => {
               id="confirmEmail"
               type="email"
               name="confirmEmail"
-              placeholder="satoshi@linux.org"
+              placeholder="satoshin@gmx.com"
             />
           </div>
         </div>
