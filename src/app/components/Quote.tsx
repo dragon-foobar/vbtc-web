@@ -20,7 +20,7 @@ export default function Quote({ data, isBlogQuote }: QuoteProps) {
     <section>
       <div
         className={`container mx-auto justify-center ${
-          isBlogQuote ? "py-2" : "sm:py-8 lg:py-12 lg:px-20"
+          isBlogQuote ? "py-2" : "sm:py-8 lg:py-12 px-2 lg:px-20"
         } `}
       >
         <div
@@ -28,18 +28,30 @@ export default function Quote({ data, isBlogQuote }: QuoteProps) {
             isBlogQuote ? "pb-0" : "pb-2 lg:pb-4 lg:px-32"
           } `}
         >
-          <span className={isBlogQuote ? "text-6xl" : "text-9xl"}>“</span>
+          <span
+            className={
+              isBlogQuote ? "text-4xl md:text-6xl" : "text-6xl md:text-9xl"
+            }
+          >
+            “
+          </span>
           <p
             className={`${
-              isBlogQuote ? "text-lg" : "text-2xl"
-            }text-center px-6  xl:text-4xl md:text-3xl italic`}
+              isBlogQuote ? "text-lg" : "text-lg md:text-4xl"
+            }text-center md:px-6  xl:text-4xl md:text-3xl italic`}
           >
             {quote}
           </p>
-          <span className={isBlogQuote ? "text-6xl" : "text-9xl"}>”</span>
+          <span
+            className={
+              isBlogQuote ? "text-4xl md:text-6xl" : "text-6xl md:text-9xl"
+            }
+          >
+            ”
+          </span>
         </div>
         <p
-          className={`text-right text-xl lg:text-2xl ${
+          className={`text-right text-lg md:text-xl lg:text-2xl ${
             isBlogQuote ? "pt-4" : "pr-12 lg:pr-36"
           }`}
         >
@@ -47,8 +59,8 @@ export default function Quote({ data, isBlogQuote }: QuoteProps) {
         </p>
         {authorDescription && (
           <p
-            className={`text-right text-lg ${
-              isBlogQuote ? "" : "pr-12 lg:pr-36"
+            className={`text-right ${
+              isBlogQuote ? "" : "pr-12 lg:pr-36 text-md md:text-lg"
             }`}
           >
             {authorDescription}
@@ -57,7 +69,7 @@ export default function Quote({ data, isBlogQuote }: QuoteProps) {
         {date && (
           <p
             className={`text-right text-sm ${
-              isBlogQuote ? "" : "pr-12 lg:pr-36"
+              isBlogQuote ? "" : "pr-12 lg:pr-36 py-2 text-sm md:text-md"
             }`}
           >
             {`${formatDate(date)}${source ? ", " + source : ""}`}

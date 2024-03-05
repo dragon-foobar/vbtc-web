@@ -5,7 +5,7 @@ const btcpayUrl = process.env.NEXT_PUBLIC_BTCPAY_URL;
 const btcpayStoreId = process.env.NEXT_PUBLIC_BTCPAY_STORE_ID;
 
 // Define the ReactBtcPayButton component
-export const ReactBtcPayButton = ({
+export const DonationWidget = ({
   browserRedirect = "", // Default
   checkoutDesc = "", // Default
   checkoutQueryString = "", // Default
@@ -44,23 +44,17 @@ export const ReactBtcPayButton = ({
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
+    console.log("about to run form data");
     const formData = new FormData(e.currentTarget);
-    const email = formData.get("email") as string;
+    const amount = formData.get("amount") as string;
 
-    if (email.trim() === "") {
-      alert("Please provide an email");
-      return;
-    }
-
-    const response = await fetch(`/checkout`, {
+    const response = await fetch("/checkout", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ email }),
+      body: JSON.stringify({ amount }),
     });
-
     const result = await response.json();
 
     if (result.success) {
@@ -70,7 +64,7 @@ export const ReactBtcPayButton = ({
 
   // The form that will be displayed
   return (
-    <form method="POST" onSubmit={handleSubmit} className="mx-10 md:mx-2">
+    <form method="POST" onSubmit={handleSubmit} className="">
       <div className="flex flex-col">
         <input
           className="btcpay-input-range mb-2"
@@ -83,7 +77,7 @@ export const ReactBtcPayButton = ({
         <input
           className="btcpay-input-price mb-4 text-2xl py-2 text-center rounded-lg border-secondary border-2"
           type="number"
-          name="price"
+          name="amount"
           min={inputMin}
           max={inputMax}
           value={price}
@@ -116,7 +110,7 @@ export const ReactBtcPayButton = ({
       />
 
       <button
-        className="bg-onyx p-2 rounded-lg justify-center flex w-full"
+        className="bg-onyx p-2 rounded-lg justify-center flex w-full sm:flex-col lg:flex-row"
         type="submit"
       >
         <span className="mr-2 text-xl text-white">{submitBtnText}</span>

@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 body {
-  @apply dark:bg-gradient-to-r dark:from-black dark:from-40% dark:to-bistre dark:to-80% bg-gradient-to-r from-white from-40% to-floral-white to-70%;
+  @apply dark:bg-gradient-to-r dark:from-black dark:from-40% dark:to-bistre dark:to-80% bg-gradient-to-r from-white from-30% to-floral-white to-60%;
 }
 
 /******************************************* 

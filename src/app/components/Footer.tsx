@@ -6,7 +6,7 @@ import { CgWebsite } from "react-icons/cg";
 import { MdOutlineEmail } from "react-icons/md";
 import { FaDiscord, FaLinkedin } from "react-icons/fa";
 import { AiFillTwitterCircle, AiFillYoutube } from "react-icons/ai";
-import { ReactBtcPayButton } from "./DonationWiget";
+import { DonationWidget } from "./DonationWiget";
 
 interface FooterLink {
   id: number;
@@ -88,7 +88,7 @@ export default function Footer({
   const btcpayStoreId = process.env.NEXT_PUBLIC_BTCPAY_STORE_ID;
   return (
     <footer className="py-6">
-      <div className="container px-6 mx-auto space-y-6 divide-y divide-gray-400 md:space-y-12 divide-opacity-50">
+      <div className="container px-6 mx-auto space-y-6 divide-y divide-secondary md:space-y-12 divide-opacity-50">
         <div className="grid grid-cols-12">
           <div className="pb-6 col-span-full md:pb-0 md:col-span-6">
             <Logo src={logoUrl}>
@@ -98,8 +98,8 @@ export default function Footer({
             </Logo>
           </div>
 
-          <div className="pb-6 md:pb-0 col-span-6 text-left md:col-span-2">
-            <p className="pb-1 text-lg font-medium">Categories</p>
+          <div className="pb-6 md:pb-0 col-span-12 text-left md:col-span-2">
+            <p className="pb-1 text-xl md:text-lg font-medium">Categories</p>
             <ul>
               {categoryLinks.map((link: CategoryLink) => (
                 <CategoryLink key={link.id} {...link} />
@@ -107,8 +107,8 @@ export default function Footer({
             </ul>
           </div>
 
-          <div className="pb-6 md:pb-0 col-span-6 text-left md:col-span-2">
-            <p className="pb-1 text-lg font-medium">Menu</p>
+          <div className="pb-6 md:pb-0 col-span-12 text-left md:col-span-2">
+            <p className="pb-1 text-xl md:text-lg font-medium">Menu</p>
             <ul>
               {menuLinks.map((link: FooterLink) => (
                 <FooterLink key={link.id} {...link} />
@@ -117,12 +117,14 @@ export default function Footer({
           </div>
 
           <div className="pb-6 md:pb-0 col-span-full text-left md:col-span-2">
-            <p className="pb-1 text-lg font-medium text-center">Support us</p>
-            <ReactBtcPayButton />
+            <p className="pb-6 text-xl font-bold text-center">
+              Support our activities with sats
+            </p>
+            <DonationWidget />
           </div>
         </div>
-        <div className="grid justify-center pt-6 lg:justify-between">
-          <div className="flex">
+        <div className="pt-6">
+          <div className="flex w-full justify-between">
             <span className="mr-4">
               ©{new Date().getFullYear()} No rights reserved. Fork code{" "}
               <Link
@@ -134,9 +136,13 @@ export default function Footer({
               </Link>
               .
             </span>
-            <ul className="flex">
+            <ul className="flex flex-col sm:flex-row w-1/2">
               {legalLinks.map((link: FooterLink) => (
-                <Link href={link.url} className="mr-4" key={link.id}>
+                <Link
+                  href={link.url}
+                  className="mr-4 text-right sm:text-left"
+                  key={link.id}
+                >
                   {link.text}
                 </Link>
               ))}

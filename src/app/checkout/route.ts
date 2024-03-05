@@ -1,6 +1,6 @@
 import { createId } from "@paralleldrive/cuid2";
 import { NextRequest, NextResponse } from "next/server";
-import { email, object, parse, string } from "valibot";
+import { email, object, parse, string, optional } from "valibot";
 
 const baseUrl = process.env.BASE_URL;
 const membershipPrice = process.env.MEMBERSHIP_PRICE;
@@ -22,17 +22,18 @@ export const POST = async (request: NextRequest, response: NextResponse) => {
   }
 
   const btcpayserverSchema = object({
-    email: string([email()]),
+    email: optional(string([email()])),
+    amount: optional(string()),
   });
 
   const redirectURL = `${baseUrl}/payment/successful`;
 
   const project_name = "BTC Ebook";
   const amount = Number(membershipPrice);
-  const currency = "AUD";
-
+  const currency = "SATS";
+  
   try {
-    const { email } = parse(btcpayserverSchema, req);
+    const { email, amount: donationAmount } = parse(btcpayserverSchema, req);
 
     const metadata = {
       orderId: createId(),
@@ -52,8 +53,8 @@ export const POST = async (request: NextRequest, response: NextResponse) => {
       redirect: "follow",
       referrerPolicy: "no-referrer",
       body: JSON.stringify({
-        amount,
-        email,
+        amount: donationAmount ? donationAmount : amount,
+        email: email ? email : "info@vbtc.org.au",
         currency,
         metadata,
         checkout: { redirectURL },
