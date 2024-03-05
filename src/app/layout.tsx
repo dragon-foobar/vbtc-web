@@ -8,6 +8,7 @@ import { ThemeProvider } from "./providers";
 import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
 import { FALLBACK_SEO } from "@/app/utils/constants";
+import { getPageBySlug } from "@/app/utils/get-page-by-slug";
 
 const metadataBaseUrlString = process.env.VERCEL_URL;
 
@@ -60,22 +61,48 @@ async function getGlobal(): Promise<any> {
 
 export async function generateMetadata(): Promise<Metadata> {
   const meta = await getGlobal();
+  const page = await getPageBySlug("home");
+  console.log("page", page.data[0].attributes.seo);
 
   if (!meta.data) return FALLBACK_SEO;
 
   const { metadata, favicon } = meta.data.attributes;
   const { url } = favicon.data.attributes;
-  return FALLBACK_SEO;
-  // return {
-  //   ...FALLBACK_SEO,
-  //   metadataBase: new URL("https://vbtc.org.au"),
-  //   title: metadata.metaTitle,
-  //   description: metadata.metaDescription,
-  //   icons: {
-  //     icon: [new URL(url, getStrapiURL())],
-  //   },
-  //   openGraph: metadata.openGraph,
-  // };
+  const {
+    keywords: pageKeywords,
+    title,
+    description,
+    authors,
+    openGraph: pageOpenGraph,
+    twitter: pageTwitter,
+  } = page.data[0].attributes.seo;
+  console.log("metadata", metadata);
+  console.log("favicon", favicon);
+
+  const { title: globalTitle, description: globalDescription } = metadata;
+
+  return {
+    ...metadata,
+    metadataBase: new URL("https://vbtc.org.au"),
+    title: title ? title : globalTitle,
+    description: description ? description : globalDescription,
+    keywords: pageKeywords.split(","),
+    authors,
+    openGraph: {
+      ...pageOpenGraph,
+      title,
+      description,
+      url: "https://vbtc.org.au",
+    },
+    twitter: {
+      ...pageTwitter,
+      title,
+      description,
+    },
+    icons: {
+      icon: [new URL(url, getStrapiURL())],
+    },
+  };
 }
 
 export default async function RootLayout({
