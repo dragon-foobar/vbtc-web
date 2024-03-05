@@ -1,7 +1,6 @@
 import { fetchAPI } from "@/app/utils/fetch-api";
 import Post from "@/app/views/post";
 import type { Metadata, ResolvingMetadata } from "next";
-import { FALLBACK_OPEN_GRAPH, FALLBACK_SEO } from "@/app/utils/constants";
 
 type Props = {
   params: { slug: string };
@@ -52,27 +51,35 @@ export async function generateMetadata(
 ): Promise<Metadata> {
   const slug = params.slug;
   const meta = await getMetaData(slug);
+  const parentData = await parent;
 
   const metadata = meta[0].attributes.seo;
-  const previousImages =
-    (await parent).openGraph?.images || FALLBACK_OPEN_GRAPH.images;
+  const previousOpenGraphImages = parentData.openGraph?.images;
+  const previousTwitterImages = parentData.twitter?.images;
 
-  return FALLBACK_SEO;
-
-  // return {
-  //   title: metadata.metaTitle,
-  //   description: metadata.metaDescription,
-  //   authors: {
-  //     name: metadata.author,
-  //   },
-  //   keywords: metadata.keywords ? metadata.keywords.split(",") : "",
-  //   creator: "Victorian Bitcoin Technology Club Inc.",
-  //   openGraph: {
-  //     ...FALLBACK_OPEN_GRAPH,
-  //     ...metadata.openGraph,
-  //     images: metadata.imageUrl || previousImages,
-  //   },
-  // };
+  return {
+    title: `${metadata.title} | Victorian Bitcoin Technology Club`,
+    description: metadata.description,
+    keywords: metadata.keywords.split(","),
+    authors: metadata.authors,
+    openGraph: {
+      ...metadata.openGraph,
+      title: metadata.title,
+      description: metadata.description,
+      url: `https://vbtc.org.au/articles/${params.slug}`,
+      images: previousOpenGraphImages
+        ? [metadata.openGraph.images, ...previousOpenGraphImages]
+        : metadata.openGraph.images,
+    },
+    twitter: {
+      ...metadata.twitter,
+      title: metadata.title,
+      description: metadata.description,
+      images: previousTwitterImages
+        ? [metadata.openGraph.images, ...previousTwitterImages]
+        : metadata.openGraph.images,
+    },
+  };
 }
 
 export default async function PostRoute({

@@ -62,7 +62,6 @@ async function getGlobal(): Promise<any> {
 export async function generateMetadata(): Promise<Metadata> {
   const meta = await getGlobal();
   const page = await getPageBySlug("home");
-  console.log("page", page.data[0].attributes.seo);
 
   if (!meta.data) return FALLBACK_SEO;
 
@@ -76,15 +75,13 @@ export async function generateMetadata(): Promise<Metadata> {
     openGraph: pageOpenGraph,
     twitter: pageTwitter,
   } = page.data[0].attributes.seo;
-  console.log("metadata", metadata);
-  console.log("favicon", favicon);
 
   const { title: globalTitle, description: globalDescription } = metadata;
 
   return {
     ...metadata,
     metadataBase: new URL("https://vbtc.org.au"),
-    title: title ? title : globalTitle,
+    title: "Victorian Bitcoin Technology Club",
     description: description ? description : globalDescription,
     keywords: pageKeywords.split(","),
     authors,

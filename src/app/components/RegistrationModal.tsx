@@ -10,9 +10,9 @@ const stripePromise = loadStripe(
 export const RegistrationModal = () => {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log("about to run form data");
+    
     const formData = new FormData(e.currentTarget);
-    console.log("form data", formData);
+    
     const email = formData.get("email") as string;
     const paymentMethod = formData.get("paymentMethod") as string;
 

@@ -44,7 +44,7 @@ export const DonationWidget = ({
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log("about to run form data");
+  
     const formData = new FormData(e.currentTarget);
     const amount = formData.get("amount") as string;
 

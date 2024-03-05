@@ -1,6 +1,7 @@
 import PageHeader from "@/app/components/PageHeader";
 import { fetchAPI } from "@/app/utils/fetch-api";
 import BlogList from "@/app/views/blog-list";
+import type { Metadata } from "next";
 
 async function fetchPostsByCategory(filter: string) {
   try {
@@ -29,6 +30,12 @@ async function fetchPostsByCategory(filter: string) {
   } catch (error) {
     console.error(error);
   }
+}
+
+export async function generateMetadata(): Promise<Metadata> {
+  return {
+    title: "Blog | Victorian Bitcoin Technology Club",
+  };
 }
 
 export default async function CategoryRoute({

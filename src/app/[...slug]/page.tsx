@@ -1,7 +1,7 @@
 import { sectionRenderer } from "@/app/utils/section-renderer";
 import { Metadata, ResolvingMetadata } from "next";
 import { getPageBySlug } from "@/app/utils/get-page-by-slug";
-import { FALLBACK_SEO, FALLBACK_OPEN_GRAPH } from "@/app/utils/constants";
+import { fetchAPI } from "../utils/fetch-api";
 
 type Props = {
   params: {
@@ -9,33 +9,53 @@ type Props = {
   };
 };
 
+async function getMetaData(slug: string) {
+  const token = process.env.NEXT_PUBLIC_STRAPI_API_TOKEN;
+  const path = `/pages`;
+  const urlParamsObject = {
+    filters: { slug },
+    populate: { seo: { populate: "*" } },
+  };
+  const options = { headers: { Authorization: `Bearer ${token}` } };
+  const response = await fetchAPI(path, urlParamsObject, options);
+  return response.data;
+}
+
 export async function generateMetadata(
   { params }: Props,
   parent: ResolvingMetadata
 ): Promise<Metadata> {
-  // const { slug } = params;
-  // const page = await getPageBySlug(slug);
+  const slug = params.slug;
+  const meta = await getMetaData(slug);
+  const parentData = await parent;
 
-  // if (!page.data[0].attributes?.seo) return FALLBACK_SEO;
-  // const metadata = page.data[0].attributes.seo;
+  const metadata = meta[0].attributes.seo;
+  const previousOpenGraphImages = parentData.openGraph?.images;
+  const previousTwitterImages = parentData.twitter?.images;
 
-  // const previousImages =
-  //   (await parent).openGraph?.images || FALLBACK_OPEN_GRAPH.images;
-  return FALLBACK_SEO;
-
-  // return {
-  //   title: metadata.metaTitle,
-  //   description: metadata.metaDescription,
-  //   authors: {
-  //     name: metadata.author,
-  //   },
-  //   keywords: metadata.keywords ? metadata.keywords.split(",") : "",
-  //   creator: "Victorian Bitcoin Technology Club Inc.",
-  //   openGraph: {
-  //     ...metadata.openGraph,
-  //     images: [metadata.openGraph.images, previousImages],
-  //   },
-  // };
+  return {
+    title: `${metadata.title} | Victorian Bitcoin Technology Club`,
+    description: metadata.description,
+    keywords: metadata.keywords.split(","),
+    authors: metadata.authors,
+    openGraph: {
+      ...metadata.openGraph,
+      title: metadata.title,
+      description: metadata.description,
+      url: `https://vbtc.org.au/articles/${params.slug}`,
+      images: previousOpenGraphImages
+        ? [metadata.openGraph.images, ...previousOpenGraphImages]
+        : metadata.openGraph.images,
+    },
+    twitter: {
+      ...metadata.twitter,
+      title: metadata.title,
+      description: metadata.description,
+      images: previousTwitterImages
+        ? [metadata.openGraph.images, ...previousTwitterImages]
+        : metadata.openGraph.images,
+    },
+  };
 }
 
 export default async function PageRoute({ params }: Props) {
