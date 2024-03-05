@@ -258,3 +258,20 @@ q {
 .blog-rich-text .warning {
   @apply bg-white border-black text-[#301014ff] px-4 py-2 rounded-lg mb-4;
 }
+
+input[type="range"] {
+  @apply accent-secondary;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
