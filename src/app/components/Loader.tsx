@@ -1,6 +1,6 @@
 export default function Loader() {
   return (
-    <div className="absolute inset-0 flex items-center justify-center z-50 bg-azure dark:bg-black">
+    <div className="absolute inset-0 flex items-center justify-center z-50 bg-white dark:bg-black">
       <div role="status">
         <svg className="animate-spin h-100 w-100 mr-50 ..." viewBox="0 0 24 24">
           <circle
@@ -9,7 +9,6 @@ export default function Loader() {
             cy="12"
             r="10"
             stroke="currentColor"
-            stroke-width="4"
           ></circle>
           <path
             className="opacity-75"
