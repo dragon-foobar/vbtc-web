@@ -116,9 +116,9 @@ export default function Footer({
             </ul>
           </div>
 
-          <div className="pb-6 md:pb-0 col-span-full text-left md:col-span-2">
+          <div className="pb-6 md:pb-0 col-span-full text-left md:col-span-2 bg-white rounded-md p-2 shadow-lg md:shadow-none md:bg-transparent">
             <p className="pb-6 text-xl font-bold text-center">
-              Support our activities with sats
+              Support our activities in Victoria with satoshis
             </p>
             <DonationWidget />
           </div>

@@ -28,7 +28,7 @@ export async function generateMetadata(
   const slug = params.slug;
   const meta = await getMetaData(slug);
   const parentData = await parent;
-
+  console.log("meta", meta);
   const metadata = meta[0].attributes.seo;
   const previousOpenGraphImages = parentData.openGraph?.images;
   const previousTwitterImages = parentData.twitter?.images;

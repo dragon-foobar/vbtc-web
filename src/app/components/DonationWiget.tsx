@@ -44,7 +44,7 @@ export const DonationWidget = ({
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-  
+
     const formData = new FormData(e.currentTarget);
     const amount = formData.get("amount") as string;
 
@@ -113,10 +113,10 @@ export const DonationWidget = ({
         className="bg-onyx p-2 rounded-lg justify-center flex w-full sm:flex-col lg:flex-row"
         type="submit"
       >
-        <span className="mr-2 text-xl text-white">{submitBtnText}</span>
+        <span className="mr-2 text-lg text-white">{submitBtnText}</span>
         {imageShow && (
           <img
-            className="w-20 ml-2"
+            className="w-12 ml-2"
             src={`${btcpayUrl}/img/paybutton/logo.svg`}
             alt="BTCPay Logo"
           />

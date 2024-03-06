@@ -46,7 +46,7 @@ export default function Hero({ data }: HeroProps) {
   return (
     <section>
       <div className="container flex flex-col justify-center mx-auto py-0 md:py-6 lg:px-6 lg:flex-row lg:justify-between xl:px-40">
-        <div className="flex items-center justify-center p-2 lg:mt-0 sm:h-80 lg:h-96 xl:h-112 2xl:h-128 md:w-100 lg:mx-0 w-2/3 mx-auto">
+        <div className="flex items-center justify-center p-2 lg:mt-0 sm:h-80 lg:h-96 xl:h-112 2xl:h-128 md:w-100 lg:mx-0 w-3/5 mx-auto">
           <Image
             src={imgUrl || ""}
             alt={

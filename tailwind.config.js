@@ -14,6 +14,7 @@ module.exports = {
       charcoal: "#40404F",
       primary: "#f2af29",
       secondary: "#f2af29",
+      "secondary-light": "#F5BE51",
       "light-cyan": "#DBF7FA",
       azure: "#EDFBFD",
       "floral-white": "#FEF8EC",
@@ -21,6 +22,7 @@ module.exports = {
       onyx: "#271b02",
       "anti-flash-white": "#ebebeb",
       "golden-brown": "#885f07",
+      transparent: "transparent",
     },
     fontFamily: {
       sans: ["var(--font-fjalla-one)"],
