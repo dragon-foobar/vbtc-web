@@ -1,6 +1,5 @@
 import { Metadata, ResolvingMetadata } from "next";
 import { TicketForm } from "@/app/components/TicketForm";
-import { fetchAPI } from "@/app/utils/fetch-api";
 import { FALLBACK_SEO } from "@/app/utils/constants";
 
 type Props = {
@@ -18,18 +17,6 @@ const EVENTS = [
     price: halvingEventPrice,
   },
 ];
-
-async function getMetaData(slug: string) {
-  const token = process.env.NEXT_PUBLIC_STRAPI_API_TOKEN;
-  const path = `/pages`;
-  const urlParamsObject = {
-    filters: { slug },
-    populate: { seo: { populate: "*" } },
-  };
-  const options = { headers: { Authorization: `Bearer ${token}` } };
-  const response = await fetchAPI(path, urlParamsObject, options);
-  return response.data;
-}
 
 export async function generateMetadata(
   { params }: Props,

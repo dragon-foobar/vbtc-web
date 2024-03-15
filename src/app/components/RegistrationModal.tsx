@@ -10,9 +10,9 @@ const stripePromise = loadStripe(
 export const RegistrationModal = () => {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    
+
     const formData = new FormData(e.currentTarget);
-    
+
     const email = formData.get("email") as string;
     const paymentMethod = formData.get("paymentMethod") as string;
 
@@ -28,11 +28,14 @@ export const RegistrationModal = () => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ email }),
+        body: JSON.stringify({ email, amount: "50000" }),
       }
     );
-    const result = await response.json();
+    console.log("response is defined");
 
+    const result = await response.json();
+    console.log("about to assign a location");
+    console.log("result", result.url);
     if (result.success) {
       window.location.assign(result.url);
     }

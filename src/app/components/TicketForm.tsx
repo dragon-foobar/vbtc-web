@@ -1,5 +1,6 @@
 "use client";
 import { loadStripe } from "@stripe/stripe-js";
+import { useState } from "react";
 
 if (!process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY)
   throw new Error("Public stripe key not found");
@@ -13,7 +14,8 @@ type Props = {
 };
 
 export const TicketForm = ({ eventId, event }: Props) => {
-  console.log("event", event);
+  const [email, setEmail] = useState("");
+
   if (!event) throw new Error("No event id is defined");
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -43,6 +45,12 @@ export const TicketForm = ({ eventId, event }: Props) => {
 
     if (result.success) {
       window.location.assign(result.url);
+    }
+  };
+
+  const validateEmail = (e: React.FormEvent<HTMLInputElement>): void => {
+    if (e.currentTarget.value === email) {
+      console.log("Yay its the same");
     }
   };
 
@@ -81,7 +89,7 @@ export const TicketForm = ({ eventId, event }: Props) => {
               className="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4"
               htmlFor="email"
             >
-              Email
+              Email (which will be used to send ticket confirmation)
             </label>
           </div>
           <div className="md:w-2/3">
@@ -90,6 +98,8 @@ export const TicketForm = ({ eventId, event }: Props) => {
               id="email"
               name="email"
               type="email"
+              value={email}
+              onChange={(e) => setEmail(e.currentTarget.value)}
               required
               placeholder="satoshin@gmx.com"
             />
@@ -110,6 +120,7 @@ export const TicketForm = ({ eventId, event }: Props) => {
               id="confirmEmail"
               type="email"
               name="confirmEmail"
+              onChange={(e) => validateEmail(e)}
               placeholder="satoshin@gmx.com"
             />
           </div>
@@ -129,6 +140,7 @@ export const TicketForm = ({ eventId, event }: Props) => {
                 name="paymentMethod"
                 value="btc"
                 checked
+                readOnly
               />
               <label className="font-serif pl-2" htmlFor="btc">
                 Bitcoin (via BTCPay Server)

@@ -8,6 +8,11 @@ const apiKey = process.env.BTCPAY_API_KEY;
 const storeId = process.env.BTCPAY_STORE_ID;
 const url = process.env.BTCPAY_URL;
 
+const btcpayserverSchema = object({
+  email: optional(string([email()])),
+  amount: optional(string()),
+});
+
 export const POST = async (request: NextRequest, response: NextResponse) => {
   const req = await request.json();
   console.info("🏁 POST /api/btcpayserver/checkout/route");
@@ -21,20 +26,14 @@ export const POST = async (request: NextRequest, response: NextResponse) => {
     throw new Error("Env variables are not defined");
   }
 
-  const btcpayserverSchema = object({
-    email: optional(string([email()])),
-    amount: optional(string()),
-  });
-
   const redirectURL = `${baseUrl}/payment/successful`;
-
-  const project_name = "BTC Ebook";
-  const amount = Number(membershipPrice);
+  const { email, amount } = parse(btcpayserverSchema, req);
+  const project_name = "donation";
   const currency = "SATS";
-  
-  try {
-    const { email, amount: donationAmount } = parse(btcpayserverSchema, req);
+  console.log("request", req);
+  const requestEmail = email ? email : "info@vbtc.org.au";
 
+  try {
     const metadata = {
       orderId: createId(),
       project_name,
@@ -53,8 +52,8 @@ export const POST = async (request: NextRequest, response: NextResponse) => {
       redirect: "follow",
       referrerPolicy: "no-referrer",
       body: JSON.stringify({
-        amount: donationAmount ? donationAmount : amount,
-        email: email ? email : "info@vbtc.org.au",
+        amount,
+        email: requestEmail,
         currency,
         metadata,
         checkout: { redirectURL },
@@ -63,6 +62,7 @@ export const POST = async (request: NextRequest, response: NextResponse) => {
 
     const session = await response.json();
     console.info(`[BTCPayServer] ✅ Successfully created Checkout Page!`);
+    console.log("session ", session);
     return NextResponse.json({ success: true, url: session.checkoutLink });
   } catch (error) {
     console.error(error, `[BTCPayServer] Checkout Error`);

@@ -118,7 +118,14 @@ export default function Footer({
 
           <div className="pb-6 md:pb-0 col-span-full text-left md:col-span-2 bg-white rounded-md p-2 shadow-lg md:shadow-none md:bg-transparent">
             <p className="pb-6 text-xl font-bold text-center">
-              Support our activities in Victoria with satoshis
+              Support our activities in Victoria with satoshis{" "}
+              <button
+                className="tooltip group relative"
+                data-tooltip="Hello, World!"
+              >
+                Hover me
+                <div className="tooltip-content invisible">Hello, World!</div>
+              </button>
             </p>
             <DonationWidget />
           </div>
