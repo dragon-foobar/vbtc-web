@@ -2,11 +2,13 @@
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import Logo from "./Logo";
+import { FaXTwitter } from "react-icons/fa6";
 import { CgWebsite } from "react-icons/cg";
 import { MdOutlineEmail } from "react-icons/md";
 import { FaDiscord, FaLinkedin } from "react-icons/fa";
 import { AiFillTwitterCircle, AiFillYoutube } from "react-icons/ai";
 import { DonationWidget } from "./DonationWiget";
+import { MdInfo } from "react-icons/md";
 
 interface FooterLink {
   id: number;
@@ -52,16 +54,12 @@ function CategoryLink({ attributes }: CategoryLink) {
 
 function RenderSocialIcon({ social }: { social: string | undefined }) {
   switch (social) {
-    case "WEBSITE":
-      return <CgWebsite />;
     case "TWITTER":
-      return <AiFillTwitterCircle />;
-    case "YOUTUBE":
-      return <AiFillYoutube />;
-    case "DISCORD":
-      return <FaDiscord />;
+      return <FaXTwitter size={20} />;
+    // case "YOUTUBE":
+    //   return <AiFillYoutube />;
     case "LINKEDIN":
-      return <FaLinkedin />;
+      return <FaLinkedin size={20} />;
     case "MAIL":
       return <MdOutlineEmail />;
     default:
@@ -116,16 +114,21 @@ export default function Footer({
             </ul>
           </div>
 
-          <div className="pb-6 md:pb-0 col-span-full text-left md:col-span-2 bg-white rounded-md p-2 shadow-lg md:shadow-none md:bg-transparent">
+          <div className="pb-6 md:pb-0 col-span-full text-left md:col-span-2 bg-white dark:bg-black dark:md:bg-transparent rounded-md p-2 shadow-lg md:shadow-none md:bg-transparent">
             <p className="pb-6 text-xl font-bold text-center">
-              Support our activities in Victoria with satoshis{" "}
-              <button
+              Support our activities in Victoria with{" "}
+              <span className="underline decoration-secondary decoration-solid">
+                satoshis
+              </span>{" "}
+              {/* <button
                 className="tooltip group relative"
                 data-tooltip="Hello, World!"
               >
-                Hover me
-                <div className="tooltip-content invisible">Hello, World!</div>
-              </button>
+                <MdInfo />
+                <div className="tooltip-content invisible">
+                  A satoshi is a very small piece of bitcoin
+                </div>
+              </button> */}
             </p>
             <DonationWidget />
           </div>
@@ -143,19 +146,15 @@ export default function Footer({
               </Link>
               .
             </span>
-            <ul className="flex flex-col sm:flex-row w-1/2">
+            <ul className="flex flex-col sm:flex-row">
               {legalLinks.map((link: FooterLink) => (
-                <Link
-                  href={link.url}
-                  className="mr-4 text-right sm:text-left"
-                  key={link.id}
-                >
+                <Link href={link.url} className="mr-4 text-right" key={link.id}>
                   {link.text}
                 </Link>
               ))}
             </ul>
           </div>
-          {/* <div className="flex justify-center pt-4 space-x-4 lg:pt-0 lg:col-end-13">
+          <div className="flex justify-center pt-4 space-x-4 lg:pt-0 lg:col-end-13">
             {socialLinks.map((link: FooterLink) => {
               return (
                 <a
@@ -164,13 +163,13 @@ export default function Footer({
                   href={link.url}
                   title={link.text}
                   target={link.newTab ? "_blank" : "_self"}
-                  className="flex items-center justify-center w-10 h-10 rounded-full"
+                  className="flex items-center justify-center w-20 h-20 rounded-full"
                 >
                   <RenderSocialIcon social={link.social} />
                 </a>
               );
             })}
-          </div> */}
+          </div>
         </div>
       </div>
     </footer>
