@@ -61,7 +61,7 @@ function RenderSocialIcon({ social }: { social: string | undefined }) {
     case "LINKEDIN":
       return <FaLinkedin size={20} />;
     case "MAIL":
-      return <MdOutlineEmail />;
+      return <MdOutlineEmail size={20} />;
     default:
       return null;
   }
