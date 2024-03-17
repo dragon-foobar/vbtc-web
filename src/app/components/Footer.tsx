@@ -119,7 +119,8 @@ export default function Footer({
               Support our activities in Victoria with{" "}
               <span className="underline decoration-secondary decoration-solid">
                 satoshis
-              </span>{" "}
+              </span>
+              {"  "}
               {/* <button
                 className="tooltip group relative"
                 data-tooltip="Hello, World!"
