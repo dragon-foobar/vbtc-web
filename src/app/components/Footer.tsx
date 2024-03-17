@@ -3,12 +3,10 @@ import { usePathname } from "next/navigation";
 import Link from "next/link";
 import Logo from "./Logo";
 import { FaXTwitter } from "react-icons/fa6";
-import { CgWebsite } from "react-icons/cg";
 import { MdOutlineEmail } from "react-icons/md";
-import { FaDiscord, FaLinkedin } from "react-icons/fa";
-import { AiFillTwitterCircle, AiFillYoutube } from "react-icons/ai";
+import { FaLinkedin } from "react-icons/fa";
+import { GiOstrich } from "react-icons/gi";
 import { DonationWidget } from "./DonationWiget";
-import { MdInfo } from "react-icons/md";
 
 interface FooterLink {
   id: number;
@@ -62,6 +60,8 @@ function RenderSocialIcon({ social }: { social: string | undefined }) {
       return <FaLinkedin size={20} />;
     case "MAIL":
       return <MdOutlineEmail size={20} />;
+    case "NOSTR":
+      return <GiOstrich size={20} />;
     default:
       return null;
   }
