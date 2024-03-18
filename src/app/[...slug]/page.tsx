@@ -43,17 +43,13 @@ export async function generateMetadata(
       title: metadata.title,
       description: metadata.description,
       url: `https://vbtc.org.au/articles/${params.slug}`,
-      images: previousOpenGraphImages
-        ? [metadata.openGraph.images, ...previousOpenGraphImages]
-        : metadata.openGraph.images,
+      images: metadata.openGraph.images || previousOpenGraphImages,
     },
     twitter: {
       ...metadata.twitter,
       title: metadata.title,
       description: metadata.description,
-      images: previousTwitterImages
-        ? [metadata.openGraph.images, ...previousTwitterImages]
-        : metadata.openGraph.images,
+      images: metadata.openGraph.images || previousOpenGraphImages,
     },
   };
 }
